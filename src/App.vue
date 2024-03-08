@@ -37,128 +37,8 @@
                   <strong>{{ currentIndex }}/{{ totalIndex }}</strong>
                 </h3>
                 <div id="middle-wizard">
-                  <TabContent :before-change="beforeTabSwitchTravelPreferences">
-                    <div class="step">
-                      <h6>Travel Preferences</h6>
 
-                      <div class="row">
-                        <div class="col-sm-6">
-                          <div class="form-group">
-                            <label class="form-label" for="firstname"
-                              >Departure Date</label
-                            >
-                            <VueDatePicker
-                              :enable-time-picker="false"
-                              v-model="travelPreferences.departureDate"
-                            >
-                            </VueDatePicker>
-                            <span
-                              v-if="v$.travelPreferences.departureDate.$error"
-                            >
-                              {{
-                                v$.travelPreferences.departureDate.$errors[0]
-                                  .$message
-                              }}
-                            </span>
-                          </div>
-                        </div>
-                        <div class="col-sm-6">
-                          <div class="form-group">
-                            <label class="form-label" for="firstname"
-                              >Return Date</label
-                            >
-                            <VueDatePicker
-                              :enable-time-picker="false"
-                              v-model="travelPreferences.returnDate"
-                            >
-                            </VueDatePicker>
-                            <span v-if="v$.travelPreferences.returnDate.$error">
-                              {{
-                                v$.travelPreferences.returnDate.$errors[0]
-                                  .$message
-                              }}
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="row">
-                        <label
-                          class="form-label mt-2"
-                          for="accommodationPreference"
-                          >Accommodation Preference
-                        </label>
-                        <span
-                          class="error-message"
-                          v-if="
-                            v$.travelPreferences.accommodationPreference.$error
-                          "
-                        >
-                          {{
-                            v$.travelPreferences.accommodationPreference
-                              .$errors[0].$message
-                          }}
-                        </span>
-                        <div class="form-group mt-2">
-                          <label class="container_radio version_2"
-                            >Space Hotel
-                            <input
-                              type="radio"
-                              name="accommodationPreference"
-                              value="Space Hotel"
-                              class="required"
-                              v-model="
-                                travelPreferences.accommodationPreference
-                              "
-                            />
-                            <span class="checkmark"></span>
-                          </label>
-                        </div>
-                        <div class="form-group">
-                          <label class="container_radio version_2"
-                            >Martian Base
-                            <input
-                              type="radio"
-                              name="accommodationPreference"
-                              value="Martian Base"
-                              class="required"
-                              v-model="
-                                travelPreferences.accommodationPreference
-                              "
-                            />
-                            <span class="checkmark"></span>
-                          </label>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="form-group">
-                          <div class="col-sm-12">
-                            <label class="mb-2"
-                              >Special Requests or Preferences</label
-                            >
-                            <textarea
-                              name="specialRequests"
-                              class="form-control"
-                              style="height: 100px"
-                              placeholder="Type here..."
-                              v-model="travelPreferences.specialRequests"
-                            ></textarea>
-                            <span
-                              class="error-message"
-                              v-if="v$.travelPreferences.specialRequests.$error"
-                            >
-                              {{
-                                v$.travelPreferences.specialRequests.$errors[0]
-                                  .$message
-                              }}
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </TabContent>
-
-                  <TabContent
+					<TabContent
                     :before-change="beforeTabSwitchPersonalInformation"
                   >
                     <div class="step">
@@ -502,35 +382,270 @@
                       </div>
                     </div>
                   </TabContent>
-
-                  <TabContent :before-change="beforeTabSwitchHealthSafety">
+				  
+                  <TabContent :before-change="beforeTabSwitchTravelPreferences">
                     <div class="step">
-                      <h6>- Health and Safety</h6>
+                      <h6>Travel Preferences</h6>
 
                       <div class="row">
                         <div class="col-sm-6">
                           <div class="form-group">
-                            <input
-                              type="text"
-                              name="firstname"
-                              class="form-control required"
-                              placeholder="First Name"
-                            />
+                            <label class="form-label" for="firstname"
+                              >Departure Date</label
+                            >
+                            <VueDatePicker
+                              :enable-time-picker="false"
+                              v-model="travelPreferences.departureDate"
+                            >
+                            </VueDatePicker>
+                            <span
+                              v-if="v$.travelPreferences.departureDate.$error"
+                            >
+                              {{
+                                v$.travelPreferences.departureDate.$errors[0]
+                                  .$message
+                              }}
+                            </span>
                           </div>
                         </div>
                         <div class="col-sm-6">
                           <div class="form-group">
+                            <label class="form-label" for="firstname"
+                              >Return Date</label
+                            >
+                            <VueDatePicker
+                              :enable-time-picker="false"
+                              v-model="travelPreferences.returnDate"
+                            >
+                            </VueDatePicker>
+                            <span v-if="v$.travelPreferences.returnDate.$error">
+                              {{
+                                v$.travelPreferences.returnDate.$errors[0]
+                                  .$message
+                              }}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <label
+                          class="form-label mt-2"
+                          for="accommodationPreference"
+                          >Accommodation Preference
+                        </label>
+                        <span
+                          class="error-message"
+                          v-if="
+                            v$.travelPreferences.accommodationPreference.$error
+                          "
+                        >
+                          {{
+                            v$.travelPreferences.accommodationPreference
+                              .$errors[0].$message
+                          }}
+                        </span>
+                        <div class="form-group mt-2">
+                          <label class="container_radio version_2"
+                            >Space Hotel
                             <input
-                              type="text"
-                              name="lastname"
-                              class="form-control required"
-                              placeholder="Last Name"
+                              type="radio"
+                              name="accommodationPreference"
+                              value="Space Hotel"
+                              class="required"
+                              v-model="
+                                travelPreferences.accommodationPreference
+                              "
                             />
+                            <span class="checkmark"></span>
+                          </label>
+                        </div>
+                        <div class="form-group">
+                          <label class="container_radio version_2"
+                            >Martian Base
+                            <input
+                              type="radio"
+                              name="accommodationPreference"
+                              value="Martian Base"
+                              class="required"
+                              v-model="
+                                travelPreferences.accommodationPreference
+                              "
+                            />
+                            <span class="checkmark"></span>
+                          </label>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="form-group">
+                          <div class="col-sm-12">
+                            <label class="mb-2"
+                              >Special Requests or Preferences</label
+                            >
+                            <textarea
+                              name="specialRequests"
+                              class="form-control"
+                              style="height: 100px"
+                              placeholder="Type here..."
+                              v-model="travelPreferences.specialRequests"
+                            ></textarea>
+                            <span
+                              class="error-message"
+                              v-if="v$.travelPreferences.specialRequests.$error"
+                            >
+                              {{
+                                v$.travelPreferences.specialRequests.$errors[0]
+                                  .$message
+                              }}
+                            </span>
                           </div>
                         </div>
                       </div>
                     </div>
                   </TabContent>
+
+                  <TabContent :before-change="beforeTabSwitchHealthSafety">
+                    <div class="step">
+                      <h6>Health and Safety</h6>
+
+                      <div class="row">
+                        <span>Emergency Contact Information</span>
+                        <div class="col-sm-4">
+                          <div class="form-group">
+                            <input
+                              type="text"
+                              name="fullName"
+                              class="form-control required"
+                              placeholder="Full Name"
+							  v-model="healthSafety.fullName"
+                            />
+							<span
+                              v-if="v$.healthSafety.fullName.$error"
+                            >
+                              {{
+                                v$.healthSafety.fullName.$errors[0].$message
+                              }}
+                            </span>
+                          </div>
+                        </div>
+                        <div class="col-sm-4">
+                          <div class="form-group">
+                            <input
+                              type="text"
+                              name="mobile"
+                              class="form-control required"
+                              placeholder="Mobile Number"
+							  v-model="healthSafety.mobile"
+                            />
+							<span
+                              v-if="v$.healthSafety.mobile.$error"
+                            >
+                              {{
+                                v$.healthSafety.mobile.$errors[0].$message
+                              }}
+                            </span>
+                          </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                          <div class="form-group">
+                              
+                            <select name="relationship" id="relationship" v-model="healthSafety.relationship">
+                              <option value="">Relationship</option>
+                              <option value="spouse">Spouse</option>
+                              <option value="partner">Partner</option>
+                              <option value="parent">Parent</option>
+                              <option value="child">Child</option>
+                              <option value="sibling">Sibling</option>
+                              <option value="friend">Friend</option>
+                              <option value="other">Other</option>
+                            </select>
+
+							<span
+                              v-if="v$.healthSafety.relationship.$error"
+                            >
+                              {{
+                                v$.healthSafety.relationship.$errors[0].$message
+                              }}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="form-group">
+                          <div class="col-sm-12">
+                            <label class="mb-2"
+                              >Any Medical Conditions (if applicable)</label
+                            >
+                            <textarea
+                              name="medicalConditions"
+                              class="form-control"
+                              style="height: 100px"
+                              placeholder="Type here..."
+                              v-model="healthSafety.medicalConditions"
+                            ></textarea>
+                            <small class="form-text text-muted"
+                              >Enter none if not applicable</small
+                            ><br>
+							<span class="error-message"
+                              v-if="v$.healthSafety.medicalConditions.$error"
+                            >
+                              {{
+                                v$.healthSafety.medicalConditions.$errors[0].$message
+                              }}
+                            </span>
+							
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group terms health-declaration">
+                        <span>Health Declaration</span>
+                        <p>
+                          1. I declare that I am of good health and I do not
+                          have any physical defect, deformity or disability. I
+                          further declare that I perform all my routine
+                          activities independently, that I do not have any
+                          history of, have never suffered from, am not currently
+                          suffering from, nor have I received, nor am I
+                          currently receiving, nor do I expect to receive any
+                          treatment, nor been hospitalized, nor do I expect to
+                          be hospitalized for any ailment or disease.
+                        </p>
+
+                        <p>
+                          2. I have not had any application for life, accident,
+                          health or critical illness insurance on my life ever
+                          been declined, postponed or accepted at other than
+                          normal terms.
+                        </p>
+
+                        <label class="container_check"
+                          >I accept the <a href="#">health declaration</a>
+                          <input
+                            type="checkbox"
+                            name="healthDeclaration"
+                            value="Yes"
+                            class="required"
+                            required
+                            v-model="healthSafety.healthDeclaration"
+                          />
+                          <span class="checkmark"></span>
+						  <br>
+						  <span class="error-message"
+                              v-if="v$.healthSafety.healthDeclaration.$error"
+                            >
+                              {{
+                                v$.healthSafety.healthDeclaration.$errors[0].$message
+                              }}
+                            </span>
+                        </label>
+						
+                      </div>
+                    </div>
+                  </TabContent>
+
                 </div>
 
                 <!-- footer -->
@@ -608,6 +723,13 @@ export default {
         accommodationPreference: "",
         specialRequests: "",
       },
+      healthSafety: {
+        medicalConditions: "",
+        healthDeclaration: "",
+		fullName: "",
+		mobile: "",
+		relationship: "",
+      },
     };
   },
   computed: {
@@ -656,8 +778,8 @@ export default {
     beforeTabSwitchTravelPreferences() {
       // Validate the fields in the TravelPreferences tab before switching
 
-      this.v$.travelPreferences.$touch(); // mark all fields in the personalInformation object as touched
-      this.v$.travelPreferences.$validate(); // validate all fields in the personalInformation object
+      this.v$.travelPreferences.$touch(); // mark all fields in the travelPreferences object as touched
+      this.v$.travelPreferences.$validate(); // validate all fields in the travelPreferences object
 
       console.log(
         "travelPreferences errors = > ",
@@ -676,6 +798,23 @@ export default {
     },
     beforeTabSwitchHealthSafety() {
       // Validate the fields in the HealthSafety tab before switching
+      
+      this.v$.healthSafety.$touch(); // mark all fields in the personalInformation object as touched
+      this.v$.healthSafety.$validate(); // validate all fields in the healthSafety object
+
+      console.log(
+        "healthSafety errors = > ",
+        this.v$.healthSafety.$errors
+      );
+
+      if (!this.v$.healthSafety.$error) {
+        // if ANY fail validation
+        //   alert("Form successfully submitted.");
+      } else {
+        alert("Form failed validation");
+        return false;
+      }
+
       return true;
     },
   },
@@ -710,6 +849,13 @@ export default {
         accommodationPreference: { required },
         specialRequests: { required },
       },
+	  healthSafety: {
+		fullName: { required },
+		mobile: { required },
+		relationship: { required },
+		healthDeclaration: { required },
+		medicalConditions: { required },
+	  },
     };
   },
 };
@@ -758,6 +904,16 @@ span.error-message {
   color: red;
   font-size: 0.8em;
   text-align: left;
+}
+
+.health-declaration > span {
+  text-align: left;
+  font-size: 15px;
+  font-weight: 500;
+  color: #333;
+}
+.health-declaration > p {
+  margin-bottom: 10px;
 }
 </style>
 
