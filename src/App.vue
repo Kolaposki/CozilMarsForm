@@ -1,9 +1,7 @@
 <template>
   <main
     class="main-section"
-    style="
-      background-image: url('https://preetheme.com/html/multitier/demo/img/bg.jpg');
-    "
+    :style="{'background-image': 'url(' + require('./assets/img/bg.jpg') + ')'}"
   >
     <div class="container">
       <div class="row">
