@@ -1,19 +1,19 @@
-// import { mount } from "@vue/test-utils";
 import { FormWizard, TabContent } from "vue3-form-wizard";
 import App from "@/App.vue";
 import VueDatePicker from "@vuepic/vue-datepicker";
 import { fireEvent } from "@testing-library/vue";
-import { mount, createLocalVue, flushPromises } from "@vue/test-utils";
+import { mount,flushPromises } from "@vue/test-utils";
 
-// Register the FormWizard and TabContent components globally for the test
-const globalComponents = {
-  components: {
-    FormWizard,
-    TabContent,
+// Register the components globally for the test and mount the App component
+const wrapper = mount(App, {
+  global: {
+    components: {
+      FormWizard,
+      TabContent,
+      VueDatePicker,
+    },
   },
-};
-
-const wrapper = mount(App, globalComponents);
+});
 
 describe("PersonalInformation", () => {
   it("validates the firstName field", async () => {
@@ -143,16 +143,6 @@ describe("PersonalInformation", () => {
   });
   
   it("validates the personalInformationDate field", async () => {
-    const wrapper = mount(App, {
-      global: {
-        components: {
-          FormWizard,
-          TabContent,
-          VueDatePicker,
-        },
-      },
-    });
-
     const datePicker = wrapper.findComponent(VueDatePicker);
     const dateInput = datePicker.find('input[placeholder="Date of Birth"]');
 
