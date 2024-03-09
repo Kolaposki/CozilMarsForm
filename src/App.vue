@@ -560,7 +560,7 @@
                     </div>
                   </TabContent>
 
-                  <TabContent :before-change="beforeTabSwitchHealthSafety">
+                  <TabContent>
                     <div class="step">
                       <h6>Health and Safety</h6>
 
@@ -764,7 +764,6 @@ import VueDatePicker from '@vuepic/vue-datepicker';
 import "@vuepic/vue-datepicker/dist/main.css";
 import { required, email, minLength, maxLength } from "@vuelidate/validators";
 import { useVuelidate } from "@vuelidate/core";
-import { helpers } from "@vuelidate/validators";
 import { FormWizard, TabContent } from "vue3-form-wizard";
 
 export default {
@@ -813,9 +812,6 @@ export default {
     onComplete() {
       alert("Yay. Done!");
     },
-    submitForm() {
-      alert("submitForm!");
-    },
     onChange(prevIndex, nextIndex) {
       this.currentIndex = nextIndex + 1; // Index is zero-based, so we add 1
     },
@@ -829,10 +825,6 @@ export default {
       // Validate the fields in the PersonalInformation tab before switching
       this.v$.personalInformation.$touch(); // mark all fields in the personalInformation object as touched
       this.v$.personalInformation.$validate(); // validate all fields in the personalInformation object
-
-      //   console.log(this.v$.$errors);
-      //   console.log(this.v$.$error);
-      console.log(this.v$.personalInformation);
 
       console.log(
         "personalInformation errors = > ",
@@ -877,8 +869,8 @@ export default {
 
       return true;
     },
-    beforeTabSwitchHealthSafety() {
-      // Validate the fields in the HealthSafety tab before switching
+    submitForm() {
+      // Validate the fields in the HealthSafety tab before submission
 
       this.v$.healthSafety.$touch(); // mark all fields in the personalInformation object as touched
       this.v$.healthSafety.$validate(); // validate all fields in the healthSafety object
@@ -900,7 +892,8 @@ export default {
         return false;
       }
 
-      return true;
+	  alert("Form submitted");
+
     },
   },
   validations() {
