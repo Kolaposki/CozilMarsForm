@@ -765,6 +765,7 @@ import "@vuepic/vue-datepicker/dist/main.css";
 import { required, email, minLength, maxLength } from "@vuelidate/validators";
 import { useVuelidate } from "@vuelidate/core";
 import { FormWizard, TabContent } from "vue3-form-wizard";
+import { useToast } from "vue-toastification";
 
 export default {
   name: "App",
@@ -825,48 +826,52 @@ export default {
       // Validate the fields in the PersonalInformation tab before switching
       this.v$.personalInformation.$touch(); // mark all fields in the personalInformation object as touched
       this.v$.personalInformation.$validate(); // validate all fields in the personalInformation object
-
-      console.log(
-        "personalInformation errors = > ",
-        this.v$.personalInformation.$errors
-      );
+	  const toast = useToast();
+     
       const phoneRegex =
         /^\+(9[976]\d|8[987530]\d|6[987]\d|5[90]\d|42\d|3[875]\d|2[98654321]\d|9[8543210]|8[6421]|6[6543210]|5[87654321]|4[987654310]|3[9643210]|2[70]|7|1)\d{1,14}$/;
       if (!phoneRegex.test(this.personalInformation.mobile)) {
         this.personalInformationPhoneError = true;
-        return false;
       }
 
-      if (!this.v$.personalInformation.$error) {
-        // if ANY fail validation
-        //   alert("Form successfully submitted.");
-      } else {
-        alert("Form failed validation");
-        return false;
-      }
+      if (this.v$.personalInformation.$error || this.personalInformationPhoneError) {
+        // if any fields fail validation
+		toast.error('Oops! There seems to be an error in your personal information.', {
+          position: 'top-right',
+          timeout: 5000,
+          closeOnClick: true,
+          pauseOnFocusLoss: true,
+          pauseOnHover: true,
+        });
+      return false;
+       
+      } 
 
       // If there are no validation errors, allow the tab switch
       return true;
     },
     beforeTabSwitchTravelPreferences() {
       // Validate the fields in the TravelPreferences tab before switching
-
       this.v$.travelPreferences.$touch(); // mark all fields in the travelPreferences object as touched
       this.v$.travelPreferences.$validate(); // validate all fields in the travelPreferences object
+	  const toast = useToast();
 
       console.log(
         "travelPreferences errors = > ",
         this.v$.travelPreferences.$errors
       );
 
-      if (!this.v$.travelPreferences.$error) {
-        // if ANY fail validation
-        //   alert("Form successfully submitted.");
-      } else {
-        alert("Form failed validation");
-        return false;
-      }
-
+      if (this.v$.travelPreferences.$error) {
+		// if any fields fail validation
+		toast.error('Oops! There seems to be an error in your travel preferences.', {
+          position: 'top-right',
+          timeout: 5000,
+          closeOnClick: true,
+          pauseOnFocusLoss: true,
+          pauseOnHover: true,
+        });
+      return false;
+      } 
       return true;
     },
     submitForm() {
@@ -881,16 +886,20 @@ export default {
         /^\+(9[976]\d|8[987530]\d|6[987]\d|5[90]\d|42\d|3[875]\d|2[98654321]\d|9[8543210]|8[6421]|6[6543210]|5[87654321]|4[987654310]|3[9643210]|2[70]|7|1)\d{1,14}$/;
       if (!phoneRegex.test(this.healthSafety.mobile)) {
         this.healthSafetyPhoneError = true;
-        return false;
       }
 
-      if (!this.v$.healthSafety.$error) {
-        // if ANY fail validation
-        //   alert("Form successfully submitted.");
-      } else {
-        alert("Form failed validation");
-        return false;
-      }
+
+      if (this.v$.healthSafety.$error || this.healthSafetyPhoneError) {
+        // if any fields fail validation
+		toast.error('Oops! There seems to be an error in the health and safety.', {
+          position: 'top-right',
+          timeout: 5000,
+          closeOnClick: true,
+          pauseOnFocusLoss: true,
+          pauseOnHover: true,
+        });
+      	return false;
+      } 
 
 	  alert("Form submitted");
 

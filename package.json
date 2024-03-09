@@ -11,6 +11,7 @@
     "@vuelidate/validators": "^2.0.4",
     "@vuepic/vue-datepicker": "^8.2.0",
     "vue": "^3.2.13",
+    "vue-toastification": "^2.0.0-rc.5",
     "vue3-form-wizard": "^0.2.3",
     "vuex": "^4.0.0"
   },
