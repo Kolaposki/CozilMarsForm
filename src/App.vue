@@ -57,8 +57,9 @@
                                   v$.personalInformation.firstName.$error,
                               }"
                             />
-                            <span class="error-message" 
-							data-error-for="personalInformationFirstname"
+                            <span
+                              class="error-message"
+                              data-error-for="personalInformationFirstname"
                               v-if="v$.personalInformation.firstName.$error"
                             >
                               {{
@@ -81,7 +82,10 @@
                                   v$.personalInformation.lastName.$error,
                               }"
                             />
-                            <span v-if="v$.personalInformation.lastName.$error" data-error-for="personalInformationLastname">
+                            <span
+                              v-if="v$.personalInformation.lastName.$error"
+                              data-error-for="personalInformationLastname"
+                            >
                               {{
                                 v$.personalInformation.lastName.$errors[0]
                                   .$message
@@ -93,7 +97,7 @@
                           <div class="form-group">
                             <input
                               type="email"
-                              name="email"
+                              name="personalInformationEmail"
                               class="form-control required"
                               placeholder="Your Email"
                               v-model="personalInformation.email"
@@ -107,7 +111,10 @@
                               else.</small
                             >
                             <br />
-                            <span v-if="v$.personalInformation.email.$error"  data-error-for="personalInformationEmail">
+                            <span
+                              v-if="v$.personalInformation.email.$error"
+                              data-error-for="personalInformationEmail"
+                            >
                               {{
                                 v$.personalInformation.email.$errors[0].$message
                               }}
@@ -118,7 +125,7 @@
                           <div class="form-group">
                             <input
                               type="text"
-                              name="mobile"
+                              name="personalInformationPhone"
                               class="form-control"
                               placeholder="Mobile Number"
                               v-model="personalInformation.mobile"
@@ -126,6 +133,7 @@
                                 'is-invalid':
                                   v$.personalInformation.mobile.$error,
                               }"
+                              ref="personalInformationPhoneInput"
                             />
 
                             <small id="phoneHelp" class="form-text text-muted"
@@ -134,7 +142,10 @@
                             >
                             <br />
 
-                            <span v-if="v$.personalInformation.mobile.$error"  data-error-for="personalInformationPhone">
+                            <span
+                              v-if="v$.personalInformation.mobile.$error"
+                              data-error-for="personalInformationPhone"
+                            >
                               <template
                                 v-if="
                                   v$.personalInformation.mobile.$errors[0]
@@ -148,8 +159,10 @@
                               </template>
                               <template v-else> Invalid mobile number</template>
                             </span>
-							<br>
-                            <span v-if="personalInformationPhoneError" data-error-for="personalInformationPhone"
+                            <br />
+                            <span
+                              v-if="personalInformationPhoneError"
+                              data-error-for="personalInformationPhone"
                               >Invalid mobile number format.</span
                             >
                           </div>
@@ -165,7 +178,10 @@
                               }"
                             >
                             </VueDatePicker>
-                            <span v-if="v$.personalInformation.date.$error" data-error-for="personalInformationDate">
+                            <span
+                              v-if="v$.personalInformation.date.$error"
+                              data-error-for="personalInformationDate"
+                            >
                               {{
                                 v$.personalInformation.date.$errors[0].$message
                               }}
@@ -406,7 +422,8 @@
                               <option value="zimbabwean">Zimbabwean</option>
                             </select>
                             <span
-                              v-if="v$.personalInformation.nationality.$error" data-error-for="personalInformationNationality"
+                              v-if="v$.personalInformation.nationality.$error"
+                              data-error-for="personalInformationNationality"
                             >
                               {{
                                 v$.personalInformation.nationality.$errors[0]
@@ -439,7 +456,8 @@
                             >
                             </VueDatePicker>
                             <span
-                              v-if="v$.travelPreferences.departureDate.$error" data-error-for="travelPreferencesDepartureDate"
+                              v-if="v$.travelPreferences.departureDate.$error"
+                              data-error-for="travelPreferencesDepartureDate"
                             >
                               {{
                                 v$.travelPreferences.departureDate.$errors[0]
@@ -462,7 +480,10 @@
                               }"
                             >
                             </VueDatePicker>
-                            <span v-if="v$.travelPreferences.returnDate.$error"  data-error-for="returnDate">
+                            <span
+                              v-if="v$.travelPreferences.returnDate.$error"
+                              data-error-for="returnDate"
+                            >
                               {{
                                 v$.travelPreferences.returnDate.$errors[0]
                                   .$message
@@ -483,7 +504,7 @@
                           v-if="
                             v$.travelPreferences.accommodationPreference.$error
                           "
-						  data-error-for="travelPreferencesAccommodationPreference"
+                          data-error-for="travelPreferencesAccommodationPreference"
                         >
                           {{
                             v$.travelPreferences.accommodationPreference
@@ -551,7 +572,7 @@
                             <span
                               class="error-message"
                               v-if="v$.travelPreferences.specialRequests.$error"
-							  data-error-for="travelPreferencesSpecialRequests"
+                              data-error-for="travelPreferencesSpecialRequests"
                             >
                               {{
                                 v$.travelPreferences.specialRequests.$errors[0]
@@ -582,7 +603,10 @@
                                 'is-invalid': v$.healthSafety.fullName.$error,
                               }"
                             />
-                            <span v-if="v$.healthSafety.fullName.$error" data-error-for="healthSafetyFullName">
+                            <span
+                              v-if="v$.healthSafety.fullName.$error"
+                              data-error-for="healthSafetyFullName"
+                            >
                               {{ v$.healthSafety.fullName.$errors[0].$message }}
                             </span>
                           </div>
@@ -591,19 +615,25 @@
                           <div class="form-group">
                             <input
                               type="text"
-                              name="mobile"
+                              name="healthSafetyMobile"
                               class="form-control required"
                               placeholder="Mobile Number"
                               v-model="healthSafety.mobile"
                               :class="{
                                 'is-invalid': v$.healthSafety.mobile.$error,
                               }"
+							  ref="healthSafetyMobileInput"
                             />
-                            <span v-if="v$.healthSafety.mobile.$error" data-error-for="healthSafetyMobile">
+                            <span
+                              v-if="v$.healthSafety.mobile.$error"
+                              data-error-for="healthSafetyMobile"
+                            >
                               {{ v$.healthSafety.mobile.$errors[0].$message }}
                             </span>
-							<br>
-                            <span v-if="healthSafetyPhoneError"  data-error-for="healthSafetyMobile"
+                            <br />
+                            <span
+                              v-if="healthSafetyPhoneError"
+                              data-error-for="healthSafetyMobile"
                               >Invalid mobile number format.</span
                             >
                           </div>
@@ -630,7 +660,10 @@
                               <option value="other">Other</option>
                             </select>
 
-                            <span v-if="v$.healthSafety.relationship.$error"  data-error-for="healthSafetyRelationship">
+                            <span
+                              v-if="v$.healthSafety.relationship.$error"
+                              data-error-for="healthSafetyRelationship"
+                            >
                               {{
                                 v$.healthSafety.relationship.$errors[0].$message
                               }}
@@ -661,7 +694,8 @@
                             ><br />
                             <span
                               class="error-message"
-                              v-if="v$.healthSafety.medicalConditions.$error" data-error-for="healthSafetymedicalConditions"
+                              v-if="v$.healthSafety.medicalConditions.$error"
+                              data-error-for="healthSafetymedicalConditions"
                             >
                               {{
                                 v$.healthSafety.medicalConditions.$errors[0]
@@ -712,7 +746,7 @@
                           <span
                             class="error-message"
                             v-if="v$.healthSafety.healthDeclaration.$error"
-							data-error-for="healthSafetyhealthDeclaration"
+                            data-error-for="healthSafetyhealthDeclaration"
                           >
                             {{
                               v$.healthSafety.healthDeclaration.$errors[0]
@@ -732,7 +766,7 @@
                       v-if="props.activeTabIndex > 0"
                       @click="prevTab()"
                       class="backward mr-3"
-					  id="prevBtn"
+                      id="prevBtn"
                     >
                       Previous
                     </button>
@@ -741,12 +775,17 @@
                       v-if="!props.isLastStep"
                       @click="nextTab()"
                       class="forward"
-					  id="nextBtn"
+                      id="nextBtn"
                     >
                       Next
                     </button>
 
-                    <button v-else @click="submitForm" class="submit" id="submitBtn">
+                    <button
+                      v-else
+                      @click="submitForm"
+                      class="submit"
+                      id="submitBtn"
+                    >
                       {{ props.isLastStep ? "Submit" : "Next" }}
                     </button>
                   </div>
@@ -833,26 +872,31 @@ export default {
       // Validate the fields in the PersonalInformation tab before switching
       this.v$.personalInformation.$touch(); // mark all fields in the personalInformation object as touched
       this.v$.personalInformation.$validate(); // validate all fields in the personalInformation object
-	  const toast = useToast();
-     
+      const toast = useToast();
+
       const phoneRegex =
         /^\+(9[976]\d|8[987530]\d|6[987]\d|5[90]\d|42\d|3[875]\d|2[98654321]\d|9[8543210]|8[6421]|6[6543210]|5[87654321]|4[987654310]|3[9643210]|2[70]|7|1)\d{1,14}$/;
       if (!phoneRegex.test(this.personalInformation.mobile)) {
         this.personalInformationPhoneError = true;
       }
 
-      if (this.v$.personalInformation.$error || this.personalInformationPhoneError) {
+      if (
+        this.v$.personalInformation.$error ||
+        this.personalInformationPhoneError
+      ) {
         // if any fields fail validation
-		toast.error('Oops! There seems to be an error in your personal information.', {
-          position: 'top-right',
-          timeout: 5000,
-          closeOnClick: true,
-          pauseOnFocusLoss: true,
-          pauseOnHover: true,
-        });
-      return false;
-       
-      } 
+        toast.error(
+          "Oops! There seems to be an error in your personal information.",
+          {
+            position: "top-right",
+            timeout: 5000,
+            closeOnClick: true,
+            pauseOnFocusLoss: true,
+            pauseOnHover: true,
+          }
+        );
+        return false;
+      }
 
       // If there are no validation errors, allow the tab switch
       return true;
@@ -861,7 +905,7 @@ export default {
       // Validate the fields in the TravelPreferences tab before switching
       this.v$.travelPreferences.$touch(); // mark all fields in the travelPreferences object as touched
       this.v$.travelPreferences.$validate(); // validate all fields in the travelPreferences object
-	  const toast = useToast();
+      const toast = useToast();
 
       console.log(
         "travelPreferences errors = > ",
@@ -869,16 +913,19 @@ export default {
       );
 
       if (this.v$.travelPreferences.$error) {
-		// if any fields fail validation
-		toast.error('Oops! There seems to be an error in your travel preferences.', {
-          position: 'top-right',
-          timeout: 5000,
-          closeOnClick: true,
-          pauseOnFocusLoss: true,
-          pauseOnHover: true,
-        });
-      return false;
-      } 
+        // if any fields fail validation
+        toast.error(
+          "Oops! There seems to be an error in your travel preferences.",
+          {
+            position: "top-right",
+            timeout: 5000,
+            closeOnClick: true,
+            pauseOnFocusLoss: true,
+            pauseOnHover: true,
+          }
+        );
+        return false;
+      }
       return true;
     },
     submitForm() {
@@ -889,27 +936,28 @@ export default {
 
       console.log("healthSafety errors = > ", this.v$.healthSafety.$errors);
 
-	  const phoneRegex =
+      const phoneRegex =
         /^\+(9[976]\d|8[987530]\d|6[987]\d|5[90]\d|42\d|3[875]\d|2[98654321]\d|9[8543210]|8[6421]|6[6543210]|5[87654321]|4[987654310]|3[9643210]|2[70]|7|1)\d{1,14}$/;
       if (!phoneRegex.test(this.healthSafety.mobile)) {
         this.healthSafetyPhoneError = true;
       }
 
-
       if (this.v$.healthSafety.$error || this.healthSafetyPhoneError) {
         // if any fields fail validation
-		toast.error('Oops! There seems to be an error in the health and safety.', {
-          position: 'top-right',
-          timeout: 5000,
-          closeOnClick: true,
-          pauseOnFocusLoss: true,
-          pauseOnHover: true,
-        });
-      	return false;
-      } 
+        toast.error(
+          "Oops! There seems to be an error in the health and safety.",
+          {
+            position: "top-right",
+            timeout: 5000,
+            closeOnClick: true,
+            pauseOnFocusLoss: true,
+            pauseOnHover: true,
+          }
+        );
+        return false;
+      }
 
-	  alert("Form submitted");
-
+      alert("Form submitted");
     },
   },
   validations() {
@@ -953,6 +1001,25 @@ export default {
         medicalConditions: { required },
       },
     };
+  },
+  mounted() {
+    this.$refs.personalInformationPhoneInput.addEventListener("focus", () => {
+      this.personalInformationPhoneError = false;
+    });
+	this.$refs.healthSafetyMobileInput.addEventListener("focus", () => {
+	  this.healthSafetyPhoneError = false;
+	});
+  },
+  beforeUnmount() {
+    this.$refs.personalInformationPhoneInput.removeEventListener(
+      "focus",
+      () => {
+        this.personalInformationPhoneError = false;
+      }
+    );
+	this.$refs.healthSafetyMobileInput.removeEventListener( "focus", () => {
+	  this.healthSafetyPhoneError = false;
+	});
   },
 };
 </script>
