@@ -1,8 +1,3 @@
-<!-- eslint-disable vue/no-unused-components -->
-<!-- eslint-disable prettier/prettier -->
-<!-- prettier-ignore -->
-<!-- eslint-disable -->
-
 <template>
   <main
     class="main-section"
@@ -802,13 +797,6 @@
 </template>
 
 <script>
-/* eslint-disable */
-/* eslint-disable */
-/* prettier-ignore */
-
-// prettier-ignore
-// eslint-disable prettier/prettier
-
 import VueDatePicker from '@vuepic/vue-datepicker';
 import { required, email, minLength, maxLength } from "@vuelidate/validators";
 import { useVuelidate } from "@vuelidate/core";
@@ -857,6 +845,7 @@ export default {
   },
   computed: {
     progressPercentage() {
+      // Calculate the progress percentage based on the current index and total index
       return (this.currentIndex / this.totalIndex) * 100;
     },
   },
@@ -1064,6 +1053,7 @@ export default {
     };
   },
   mounted() {
+    // Add focus event listeners to the phone number input fields
     this.$refs.personalInformationPhoneInput.addEventListener("focus", () => {
       this.personalInformationPhoneError = false;
     });
@@ -1072,6 +1062,7 @@ export default {
     });
   },
   beforeUnmount() {
+    // Remove focus event listeners from the phone number input fields
     this.$refs.personalInformationPhoneInput.removeEventListener(
       "focus",
       () => {
