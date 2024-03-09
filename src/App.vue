@@ -862,31 +862,40 @@ export default {
   },
   methods: {
     onChange(prevIndex, nextIndex) {
-      this.currentIndex = nextIndex + 1; // Index is zero-based, so we add 1
+      // Update the current index when the tab changes
+      // Index is zero-based, so we add 1
+      this.currentIndex = nextIndex + 1;
     },
     prevTab() {
+      // Go to the previous tab in the wizard
       this.$refs.wizard.prevTab();
     },
     nextTab() {
+      // Go to the next tab in the wizard
       this.$refs.wizard.nextTab();
     },
     beforeTabSwitchPersonalInformation() {
       // Validate the fields in the PersonalInformation tab before switching
-      this.v$.personalInformation.$touch(); // mark all fields in the personalInformation object as touched
-      this.v$.personalInformation.$validate(); // validate all fields in the personalInformation object
+
+      // mark all fields in the personalInformation object as touched
+      // validate all fields in the personalInformation object
+      this.v$.personalInformation.$touch();
+      this.v$.personalInformation.$validate();
+
       const toast = useToast();
 
+      // Check if the phone number is in the correct format
       const phoneRegex =
         /^\+(9[976]\d|8[987530]\d|6[987]\d|5[90]\d|42\d|3[875]\d|2[98654321]\d|9[8543210]|8[6421]|6[6543210]|5[87654321]|4[987654310]|3[9643210]|2[70]|7|1)\d{1,14}$/;
       if (!phoneRegex.test(this.personalInformation.mobile)) {
         this.personalInformationPhoneError = true;
       }
 
+      // If any fields fail validation, show an error toast and prevent the tab switch
       if (
         this.v$.personalInformation.$error ||
         this.personalInformationPhoneError
       ) {
-        // if any fields fail validation
         toast.error(
           "Oops! There seems to be an error in your personal information.",
           {
@@ -905,17 +914,16 @@ export default {
     },
     beforeTabSwitchTravelPreferences() {
       // Validate the fields in the TravelPreferences tab before switching
-      this.v$.travelPreferences.$touch(); // mark all fields in the travelPreferences object as touched
-      this.v$.travelPreferences.$validate(); // validate all fields in the travelPreferences object
+
+      // mark all fields in the travelPreferences object as touched
+      // validate all fields in the travelPreferences object
+      this.v$.travelPreferences.$touch();
+      this.v$.travelPreferences.$validate();
+
       const toast = useToast();
 
-      console.log(
-        "travelPreferences errors = > ",
-        this.v$.travelPreferences.$errors
-      );
-
+      // If any fields fail validation, show an error toast and prevent the tab switch
       if (this.v$.travelPreferences.$error) {
-        // if any fields fail validation
         toast.error(
           "Oops! There seems to be an error in your travel preferences.",
           {
@@ -932,11 +940,13 @@ export default {
     },
     submitForm() {
       // Validate the fields in the HealthSafety tab before submission
-      this.v$.healthSafety.$touch(); // mark all fields in the personalInformation object as touched
-      this.v$.healthSafety.$validate(); // validate all fields in the healthSafety object
 
-      console.log("healthSafety errors = > ", this.v$.healthSafety.$errors);
+      // mark all fields in the healthSafety object as touched
+      // validate all fields in the healthSafety object
+      this.v$.healthSafety.$touch();
+      this.v$.healthSafety.$validate();
 
+      // Check if the phone number is in the correct format
       const phoneRegex =
         /^\+(9[976]\d|8[987530]\d|6[987]\d|5[90]\d|42\d|3[875]\d|2[98654321]\d|9[8543210]|8[6421]|6[6543210]|5[87654321]|4[987654310]|3[9643210]|2[70]|7|1)\d{1,14}$/;
       if (!phoneRegex.test(this.healthSafety.mobile)) {
@@ -944,8 +954,9 @@ export default {
       }
 
       const toast = useToast();
+
+      // If any fields fail validation, show an error toast and prevent form submission
       if (this.v$.healthSafety.$error || this.healthSafetyPhoneError) {
-        // if any fields fail validation
         toast.error(
           "Oops! There seems to be an error in the health and safety.",
           {
@@ -962,7 +973,7 @@ export default {
       this.allDone();
     },
     initialState() {
-		// represents the initial state of all data properties.
+      // Represents the initial state of all data properties
       return {
         personalInformationPhoneError: false,
         healthSafetyPhoneError: false,
@@ -989,25 +1000,27 @@ export default {
         },
       };
     },
-	  
-	resetData() {
-	// sets the data properties to their initial values.
+
+    resetData() {
+      // Sets the data properties to their initial values
       const initialData = this.initialState();
       this.personalInformation = initialData.personalInformation;
       this.travelPreferences = initialData.travelPreferences;
       this.healthSafety = initialData.healthSafety;
-	  this.personalInformationPhoneError = initialData.personalInformationPhoneError;
-	  this.healthSafetyPhoneError = initialData.healthSafetyPhoneError;
+      this.personalInformationPhoneError =
+        initialData.personalInformationPhoneError;
+      this.healthSafetyPhoneError = initialData.healthSafetyPhoneError;
     },
 
     allDone() {
-      // end of cycle
+      // End of cycle
       this.showModal = true;
       this.$refs.wizard.reset(); // reset wizard state
-	  this.resetData(); // reset the data to its initial state
-	  this.v$.$reset(); // reset the vuelidate state
+      this.resetData(); // reset the data to its initial state
+      this.v$.$reset(); // reset the vuelidate state
     },
   },
+
   validations() {
     // using vuelidate for form validation
 
