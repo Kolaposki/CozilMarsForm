@@ -29,7 +29,7 @@ describe('App', () => {
       await nextButton.trigger('click');
   
       // check whether the component displays an error message
-      const errorMessage = wrapper.find('span[data-error-for="firstname"]');
+      const errorMessage = wrapper.find('span[data-error-for="personalInformationFirstname"]');
       expect(errorMessage.exists()).toBe(true);
       expect(errorMessage.text()).toBe('Value is required');
   
@@ -40,7 +40,7 @@ describe('App', () => {
       await firstNameInput.trigger('blur');
   
       // check whether the error message is no longer displayed
-      expect(wrapper.find('span[data-error-for="firstname"]').exists()).toBe(false);
+      expect(wrapper.find('span[data-error-for="personalInformationFirstname"]').exists()).toBe(false);
   
     });
   

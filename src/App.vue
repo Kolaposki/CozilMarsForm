@@ -58,7 +58,7 @@
                               }"
                             />
                             <span class="error-message" 
-							data-error-for="firstname"
+							data-error-for="personalInformationFirstname"
                               v-if="v$.personalInformation.firstName.$error"
                             >
                               {{
@@ -81,7 +81,7 @@
                                   v$.personalInformation.lastName.$error,
                               }"
                             />
-                            <span v-if="v$.personalInformation.lastName.$error">
+                            <span v-if="v$.personalInformation.lastName.$error" data-error-for="personalInformationLastname">
                               {{
                                 v$.personalInformation.lastName.$errors[0]
                                   .$message
@@ -107,7 +107,7 @@
                               else.</small
                             >
                             <br />
-                            <span v-if="v$.personalInformation.email.$error">
+                            <span v-if="v$.personalInformation.email.$error"  data-error-for="personalInformationEmail">
                               {{
                                 v$.personalInformation.email.$errors[0].$message
                               }}
@@ -134,7 +134,7 @@
                             >
                             <br />
 
-                            <span v-if="v$.personalInformation.mobile.$error">
+                            <span v-if="v$.personalInformation.mobile.$error"  data-error-for="personalInformationPhone">
                               <template
                                 v-if="
                                   v$.personalInformation.mobile.$errors[0]
@@ -149,7 +149,7 @@
                               <template v-else> Invalid mobile number</template>
                             </span>
 							<br>
-                            <span v-if="personalInformationPhoneError"
+                            <span v-if="personalInformationPhoneError" data-error-for="personalInformationPhone"
                               >Invalid mobile number format.</span
                             >
                           </div>
@@ -165,7 +165,7 @@
                               }"
                             >
                             </VueDatePicker>
-                            <span v-if="v$.personalInformation.date.$error">
+                            <span v-if="v$.personalInformation.date.$error" data-error-for="personalInformationDate">
                               {{
                                 v$.personalInformation.date.$errors[0].$message
                               }}
@@ -406,7 +406,7 @@
                               <option value="zimbabwean">Zimbabwean</option>
                             </select>
                             <span
-                              v-if="v$.personalInformation.nationality.$error"
+                              v-if="v$.personalInformation.nationality.$error" data-error-for="personalInformationNationality"
                             >
                               {{
                                 v$.personalInformation.nationality.$errors[0]
@@ -439,7 +439,7 @@
                             >
                             </VueDatePicker>
                             <span
-                              v-if="v$.travelPreferences.departureDate.$error"
+                              v-if="v$.travelPreferences.departureDate.$error" data-error-for="travelPreferencesDepartureDate"
                             >
                               {{
                                 v$.travelPreferences.departureDate.$errors[0]
@@ -462,7 +462,7 @@
                               }"
                             >
                             </VueDatePicker>
-                            <span v-if="v$.travelPreferences.returnDate.$error">
+                            <span v-if="v$.travelPreferences.returnDate.$error"  data-error-for="returnDate">
                               {{
                                 v$.travelPreferences.returnDate.$errors[0]
                                   .$message
@@ -483,6 +483,7 @@
                           v-if="
                             v$.travelPreferences.accommodationPreference.$error
                           "
+						  data-error-for="travelPreferencesAccommodationPreference"
                         >
                           {{
                             v$.travelPreferences.accommodationPreference
@@ -550,6 +551,7 @@
                             <span
                               class="error-message"
                               v-if="v$.travelPreferences.specialRequests.$error"
+							  data-error-for="travelPreferencesSpecialRequests"
                             >
                               {{
                                 v$.travelPreferences.specialRequests.$errors[0]
@@ -580,7 +582,7 @@
                                 'is-invalid': v$.healthSafety.fullName.$error,
                               }"
                             />
-                            <span v-if="v$.healthSafety.fullName.$error">
+                            <span v-if="v$.healthSafety.fullName.$error" data-error-for="healthSafetyFullName">
                               {{ v$.healthSafety.fullName.$errors[0].$message }}
                             </span>
                           </div>
@@ -597,11 +599,11 @@
                                 'is-invalid': v$.healthSafety.mobile.$error,
                               }"
                             />
-                            <span v-if="v$.healthSafety.mobile.$error">
+                            <span v-if="v$.healthSafety.mobile.$error" data-error-for="healthSafetyMobile">
                               {{ v$.healthSafety.mobile.$errors[0].$message }}
                             </span>
 							<br>
-                            <span v-if="healthSafetyPhoneError"
+                            <span v-if="healthSafetyPhoneError"  data-error-for="healthSafetyMobile"
                               >Invalid mobile number format.</span
                             >
                           </div>
@@ -628,7 +630,7 @@
                               <option value="other">Other</option>
                             </select>
 
-                            <span v-if="v$.healthSafety.relationship.$error">
+                            <span v-if="v$.healthSafety.relationship.$error"  data-error-for="healthSafetyRelationship">
                               {{
                                 v$.healthSafety.relationship.$errors[0].$message
                               }}
@@ -659,7 +661,7 @@
                             ><br />
                             <span
                               class="error-message"
-                              v-if="v$.healthSafety.medicalConditions.$error"
+                              v-if="v$.healthSafety.medicalConditions.$error" data-error-for="healthSafetymedicalConditions"
                             >
                               {{
                                 v$.healthSafety.medicalConditions.$errors[0]
@@ -710,6 +712,7 @@
                           <span
                             class="error-message"
                             v-if="v$.healthSafety.healthDeclaration.$error"
+							data-error-for="healthSafetyhealthDeclaration"
                           >
                             {{
                               v$.healthSafety.healthDeclaration.$errors[0]
