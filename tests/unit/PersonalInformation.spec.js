@@ -15,7 +15,7 @@ const globalComponents = {
 
 const wrapper = mount(App, globalComponents);
 
-describe("App", () => {
+describe("PersonalInformation", () => {
   it("validates the firstName field", async () => {
     // find the firstName input field
     const firstNameInput = wrapper.find('input[name="firstname"]');
