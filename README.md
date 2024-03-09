@@ -3,6 +3,9 @@
 Cozil is a multi-stage application form designed to form for individuals interested in
 visiting Mars. The form will collect various details and preferences from applicants. Built with Vue.js, this project also utilizes Jest for testing to ensure the code is reliable and of high quality.
 
+
+Project is hosted on [Vercel](https://cozil-mars-form.vercel.app/)
+
 ## Project Setup
 
 1. Clone the repository.
