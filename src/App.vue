@@ -171,11 +171,13 @@
                           <div class="form-group">
                             <VueDatePicker
                               :enable-time-picker="false"
+							  id="personalInformationDate"
                               v-model="personalInformation.date"
                               :class="{
                                 'is-invalid':
                                   v$.personalInformation.date.$error,
                               }"
+							  placeholder="Date of Birth"
                             >
                             </VueDatePicker>
                             <span
