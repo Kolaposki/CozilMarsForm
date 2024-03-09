@@ -3,6 +3,7 @@ import App from "./App.vue";
 import store from "./store";
 import Toast from "vue-toastification";
 import "vue-toastification/dist/index.css";
+import "@vuepic/vue-datepicker/dist/main.css";
 
 
 const app = createApp(App);

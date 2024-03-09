@@ -57,7 +57,7 @@
                                   v$.personalInformation.firstName.$error,
                               }"
                             />
-                            <span
+                            <span class="error-message"
                               v-if="v$.personalInformation.firstName.$error"
                             >
                               {{
@@ -726,6 +726,7 @@
                       v-if="props.activeTabIndex > 0"
                       @click="prevTab()"
                       class="backward mr-3"
+					  id="prevBtn"
                     >
                       Previous
                     </button>
@@ -734,11 +735,12 @@
                       v-if="!props.isLastStep"
                       @click="nextTab()"
                       class="forward"
+					  id="nextBtn"
                     >
                       Next
                     </button>
 
-                    <button v-else @click="submitForm" class="submit">
+                    <button v-else @click="submitForm" class="submit" id="submitBtn">
                       {{ props.isLastStep ? "Submit" : "Next" }}
                     </button>
                   </div>
@@ -761,7 +763,6 @@
 // eslint-disable prettier/prettier
 
 import VueDatePicker from '@vuepic/vue-datepicker';
-import "@vuepic/vue-datepicker/dist/main.css";
 import { required, email, minLength, maxLength } from "@vuelidate/validators";
 import { useVuelidate } from "@vuelidate/core";
 import { FormWizard, TabContent } from "vue3-form-wizard";
