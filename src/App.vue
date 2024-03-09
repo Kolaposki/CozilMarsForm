@@ -802,6 +802,9 @@
         </div>
       </div>
     </div>
+
+	<Modal :isOpen="showModal" @update:isOpen="showModal = $event" />
+
   </main>
 </template>
 
@@ -818,6 +821,7 @@ import { required, email, minLength, maxLength } from "@vuelidate/validators";
 import { useVuelidate } from "@vuelidate/core";
 import { FormWizard, TabContent } from "vue3-form-wizard";
 import { useToast } from "vue-toastification";
+import Modal from "./components/Modal.vue";
 
 export default {
   name: "App",
@@ -825,6 +829,7 @@ export default {
     FormWizard,
     TabContent,
     VueDatePicker,
+	Modal,
   },
   data() {
     return {
@@ -833,6 +838,7 @@ export default {
       totalIndex: 3, // total number of steps in our form
       personalInformationPhoneError: false,
       healthSafetyPhoneError: false,
+	  showModal: false,
       personalInformation: {
         firstName: "",
         lastName: "",
@@ -963,7 +969,7 @@ export default {
         return false;
       }
 
-      alert("Form submitted");
+	  this.showModal = true;
     },
   },
   validations() {
@@ -1051,7 +1057,6 @@ div.wizard-navigation > ul {
   left: 0;
   height: 100%;
   background-color: #5f3afc;
-  /* Change this to your desired progress bar color */
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
 }
