@@ -27,12 +27,7 @@
               </div>
               <!-- /top-wizard -->
 
-              <FormWizard
-                @on-complete="onComplete"
-                @on-change="onChange"
-                :start-index="0"
-                ref="wizard"
-              >
+              <FormWizard @on-change="onChange" :start-index="0" ref="wizard">
                 <h3 class="main_question">
                   <strong>{{ currentIndex }}/{{ totalIndex }}</strong>
                 </h3>
@@ -171,13 +166,13 @@
                           <div class="form-group">
                             <VueDatePicker
                               :enable-time-picker="false"
-							  id="personalInformationDate"
+                              id="personalInformationDate"
                               v-model="personalInformation.date"
                               :class="{
                                 'is-invalid':
                                   v$.personalInformation.date.$error,
                               }"
-							  placeholder="Date of Birth"
+                              placeholder="Date of Birth"
                             >
                             </VueDatePicker>
                             <span
@@ -455,9 +450,8 @@
                                 'is-invalid':
                                   v$.travelPreferences.departureDate.$error,
                               }"
-							  placeholder="Departure Date"
-							  ref="departureDatePicker"
-
+                              placeholder="Departure Date"
+                              ref="departureDatePicker"
                             >
                             </VueDatePicker>
                             <span
@@ -483,7 +477,7 @@
                                 'is-invalid':
                                   v$.travelPreferences.returnDate.$error,
                               }"
-							  placeholder="Return Date"
+                              placeholder="Return Date"
                             >
                             </VueDatePicker>
                             <span
@@ -628,7 +622,7 @@
                               :class="{
                                 'is-invalid': v$.healthSafety.mobile.$error,
                               }"
-							  ref="healthSafetyMobileInput"
+                              ref="healthSafetyMobileInput"
                             />
                             <span
                               v-if="v$.healthSafety.mobile.$error"
@@ -803,8 +797,7 @@
       </div>
     </div>
 
-	<Modal :isOpen="showModal" @update:isOpen="showModal = $event" />
-
+    <Modal :isOpen="showModal" @update:isOpen="showModal = $event" />
   </main>
 </template>
 
@@ -829,7 +822,7 @@ export default {
     FormWizard,
     TabContent,
     VueDatePicker,
-	Modal,
+    Modal,
   },
   data() {
     return {
@@ -838,7 +831,7 @@ export default {
       totalIndex: 3, // total number of steps in our form
       personalInformationPhoneError: false,
       healthSafetyPhoneError: false,
-	  showModal: false,
+      showModal: false,
       personalInformation: {
         firstName: "",
         lastName: "",
@@ -868,9 +861,6 @@ export default {
     },
   },
   methods: {
-    onComplete() {
-      alert("Yay. Done!");
-    },
     onChange(prevIndex, nextIndex) {
       this.currentIndex = nextIndex + 1; // Index is zero-based, so we add 1
     },
@@ -942,7 +932,6 @@ export default {
     },
     submitForm() {
       // Validate the fields in the HealthSafety tab before submission
-
       this.v$.healthSafety.$touch(); // mark all fields in the personalInformation object as touched
       this.v$.healthSafety.$validate(); // validate all fields in the healthSafety object
 
@@ -954,6 +943,7 @@ export default {
         this.healthSafetyPhoneError = true;
       }
 
+      const toast = useToast();
       if (this.v$.healthSafety.$error || this.healthSafetyPhoneError) {
         // if any fields fail validation
         toast.error(
@@ -969,7 +959,53 @@ export default {
         return false;
       }
 
-	  this.showModal = true;
+      this.allDone();
+    },
+    initialState() {
+		// represents the initial state of all data properties.
+      return {
+        personalInformationPhoneError: false,
+        healthSafetyPhoneError: false,
+        personalInformation: {
+          firstName: "",
+          lastName: "",
+          email: "",
+          mobile: "",
+          nationality: "",
+          date: null,
+        },
+        travelPreferences: {
+          departureDate: null,
+          returnDate: null,
+          accommodationPreference: "",
+          specialRequests: "",
+        },
+        healthSafety: {
+          medicalConditions: "",
+          healthDeclaration: "",
+          fullName: "",
+          mobile: "",
+          relationship: "",
+        },
+      };
+    },
+	  
+	resetData() {
+	// sets the data properties to their initial values.
+      const initialData = this.initialState();
+      this.personalInformation = initialData.personalInformation;
+      this.travelPreferences = initialData.travelPreferences;
+      this.healthSafety = initialData.healthSafety;
+	  this.personalInformationPhoneError = initialData.personalInformationPhoneError;
+	  this.healthSafetyPhoneError = initialData.healthSafetyPhoneError;
+    },
+
+    allDone() {
+      // end of cycle
+      this.showModal = true;
+      this.$refs.wizard.reset(); // reset wizard state
+	  this.resetData(); // reset the data to its initial state
+	  this.v$.$reset(); // reset the vuelidate state
     },
   },
   validations() {
@@ -1018,9 +1054,9 @@ export default {
     this.$refs.personalInformationPhoneInput.addEventListener("focus", () => {
       this.personalInformationPhoneError = false;
     });
-	this.$refs.healthSafetyMobileInput.addEventListener("focus", () => {
-	  this.healthSafetyPhoneError = false;
-	});
+    this.$refs.healthSafetyMobileInput.addEventListener("focus", () => {
+      this.healthSafetyPhoneError = false;
+    });
   },
   beforeUnmount() {
     this.$refs.personalInformationPhoneInput.removeEventListener(
@@ -1029,9 +1065,9 @@ export default {
         this.personalInformationPhoneError = false;
       }
     );
-	this.$refs.healthSafetyMobileInput.removeEventListener( "focus", () => {
-	  this.healthSafetyPhoneError = false;
-	});
+    this.$refs.healthSafetyMobileInput.removeEventListener("focus", () => {
+      this.healthSafetyPhoneError = false;
+    });
   },
 };
 </script>
