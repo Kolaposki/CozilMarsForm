@@ -1,11 +1,11 @@
 module.exports = {
   testEnvironment: "node",
-  preset: '@vue/cli-plugin-unit-jest',
+  preset: '@vue/cli-plugin-unit-jest/presets/no-babel',
 //   testMatch: ["**/__tests__/**/*.js?(x)", "**/?(*.)+(spec|test).js?(x)"],
   moduleFileExtensions: ["js", "json", "vue",],
   transform: {
     "^.+\\.js$": "babel-jest",
-    "^.+\\.vue$": "@vue/vue3-jest@28.1.0"
+    "^.+\\.vue$": "@vue/vue3-jest"
   },
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1'
