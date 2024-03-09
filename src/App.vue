@@ -57,7 +57,8 @@
                                   v$.personalInformation.firstName.$error,
                               }"
                             />
-                            <span class="error-message"
+                            <span class="error-message" 
+							data-error-for="firstname"
                               v-if="v$.personalInformation.firstName.$error"
                             >
                               {{
@@ -147,6 +148,7 @@
                               </template>
                               <template v-else> Invalid mobile number</template>
                             </span>
+							<br>
                             <span v-if="personalInformationPhoneError"
                               >Invalid mobile number format.</span
                             >
@@ -598,6 +600,7 @@
                             <span v-if="v$.healthSafety.mobile.$error">
                               {{ v$.healthSafety.mobile.$errors[0].$message }}
                             </span>
+							<br>
                             <span v-if="healthSafetyPhoneError"
                               >Invalid mobile number format.</span
                             >
