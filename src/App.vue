@@ -455,6 +455,9 @@
                                 'is-invalid':
                                   v$.travelPreferences.departureDate.$error,
                               }"
+							  placeholder="Departure Date"
+							  ref="departureDatePicker"
+
                             >
                             </VueDatePicker>
                             <span
@@ -480,6 +483,7 @@
                                 'is-invalid':
                                   v$.travelPreferences.returnDate.$error,
                               }"
+							  placeholder="Return Date"
                             >
                             </VueDatePicker>
                             <span
